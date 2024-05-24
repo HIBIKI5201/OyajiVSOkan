@@ -676,7 +676,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 2
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -770,7 +770,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRB: {fileID: 698022750}
   _moveSpeed: 5
-  _jumpPower: 8
+  _jumpPower: 12
+  attackCollider: {fileID: 908064112}
+  _attackTime: 0.3
 --- !u!70 &698022755
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1771,9 +1773,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPbar: {fileID: 656903350}
+  Drinkbar: {fileID: 1485156103}
   PLHealth: 100
+  PLDrink: 100
+  DrinkDecrease: 5
   TimerText: {fileID: 495040331}
   ScoreText: {fileID: 369940692}
+  NomalBattleTime: 45
+  FeverBattleTime: 10
+  FeverCutInTime: 5
 --- !u!1 &1415996609
 GameObject:
   m_ObjectHideFlags: 0

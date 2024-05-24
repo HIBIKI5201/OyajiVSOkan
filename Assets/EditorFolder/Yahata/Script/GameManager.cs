@@ -20,12 +20,32 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] private TextMeshProUGUI ScoreText;
+
+    [SerializeField] private float NomalBattleTime;
+    [SerializeField] private float FeverBattleTime;
+    [SerializeField] private float FeverCutInTime;
+    private bool Feverbool;
     void Start()
     {
         Timer = 0;
         Score = 0;
         Health = PLHealth;
         Drink = 0;
+    }
+
+    private IEnumerator FeverTime()
+    {
+        Time.timeScale = 0;
+        
+        yield return new WaitForSecondsRealtime(FeverCutInTime);
+        
+        Time.timeScale = 1;
+
+        Debug.Log("FeverTimeStart");
+        yield return new WaitForSeconds(FeverBattleTime);
+
+        Debug.Log("FeverTimeEnd");
+        Feverbool = false;
     }
 
     void Update()
@@ -35,6 +55,13 @@ public class GameManager : MonoBehaviour
         int TimerMinute = (int)Mathf.Floor(Timer/60);
         int TimerSecond = (int)Mathf.Floor(Timer%60);
         TimerText.text = TimerMinute.ToString("D2") + ":" + TimerSecond.ToString("D2");
+
+        if((Timer % (NomalBattleTime + FeverBattleTime)) >= NomalBattleTime && !Feverbool)
+        {
+            Feverbool = true;
+            Debug.Log("FeverTime");
+            StartCoroutine(FeverTime());
+        }
 
         ScoreText.text = "Score\n" + Score.ToString("D8");
 
