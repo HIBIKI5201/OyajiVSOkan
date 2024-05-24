@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public static int Score;
     [SerializeField] private Image HPbar;
     public static float Health;
-    [SerializeField] private float playerHealth;
+
+    [SerializeField] private float PLHealth;
 
     [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] private TextMeshProUGUI ScoreText;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         Timer = 0;
         Score = 0;
-        Health = playerHealth;
+        Health = PLHealth;
     }
 
     void Update()
@@ -30,8 +31,8 @@ public class GameManager : MonoBehaviour
         int TimerSecond = (int)Mathf.Floor(Timer%60);
         TimerText.text = TimerMinute.ToString("D2") + ":" + TimerSecond.ToString("D2");
 
-        ScoreText.text = Score.ToString("D8");
+        ScoreText.text = "Score\n" + Score.ToString("D8");
 
-        HPbar.fillAmount = Health / playerHealth;
+        HPbar.fillAmount = Health / PLHealth;
     }
 }

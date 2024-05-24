@@ -20,30 +20,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("敵にぶつかった");
-            GameManager.Health--;
-
-            Debug.Log(GameManager.Health);
-            
         }
 
         if (collision.gameObject.CompareTag("Item"))
         {
             Debug.Log("アイテムを取得");
-            ItemManager.ItemKind getItemKind = collision.gameObject.GetComponent<ItemManager>().itemKind;
-
-            if(getItemKind == ItemManager.ItemKind.AidKit)
-            {
-                Debug.Log("回復アイテムを取得");
-
-                GameManager.Score += 200;
-            } 
-            else if(getItemKind == ItemManager.ItemKind.Sake)
-            {
-                Debug.Log("酒を取得");
-            }
-
-
-            Destroy(collision.gameObject);
         }
     }
 
