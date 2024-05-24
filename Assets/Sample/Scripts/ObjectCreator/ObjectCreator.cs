@@ -22,6 +22,9 @@ public class ObjectCreator : MonoBehaviour
     private float _createInterval = 1.0f;
     [SerializeField]
     private float _createTresureInterval = 1.0f;
+    [SerializeField]
+    private float _intervalDecrease = 0.01f;
+    private float _intervalDecreaseCount;
     [Header("フィーバー中の生成のインターバル")]
     [SerializeField]
     private float _createIntervalFever = 1.0f;
@@ -106,6 +109,8 @@ public class ObjectCreator : MonoBehaviour
         // インターバル時間を加算
         _timeCount += Time.deltaTime;
         _itemTimeCount += Time.deltaTime;
+        _intervalDecreaseCount += _intervalDecrease * Time.deltaTime;
+
 
         // インターバル時間に達したらオブジェクトを生成
 
@@ -123,7 +128,7 @@ public class ObjectCreator : MonoBehaviour
             }
         } else
         {
-            if (_timeCount >= _createInterval)
+            if (_timeCount >= _createInterval - _intervalDecreaseCount)
             {
                 CreateObject(false);
                 _timeCount = 0.0f;

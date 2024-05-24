@@ -68,8 +68,6 @@ public class ItemManager : MonoBehaviour
             if (itemKind == ItemKind.Tsumami)
             {
                 Debug.Log("‚Â‚Ü‚Ý‚ðŽæ“¾");
-
-                GameManager.Score += 200;
             }
             else if (itemKind == ItemKind.Sake)
             {

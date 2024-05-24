@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float FeverBattleTime;
     [SerializeField] private float FeverCutInTime;
     public static bool Feverbool;
+
+    public static int[] getItems;
     void Start()
     {
         Timer = 0;
