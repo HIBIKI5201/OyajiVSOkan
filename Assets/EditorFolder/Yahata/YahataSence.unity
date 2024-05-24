@@ -1816,7 +1816,10 @@ MonoBehaviour:
   - {fileID: 2553917131285715655, guid: a158e841e3f3d8a418c2e5de442c1dc6, type: 3}
   _isRandom: 1
   _isAutoCreate: 1
-  _createInterval: 1
+  _createInterval: 2
+  _createTresureInterval: 0.5
+  _createIntervalFever: 0.5
+  _createTresureIntervalFever: 0.25
   _isCreateCountLimit: 0
   _createCountNum: 10
   _createPositionType: 0

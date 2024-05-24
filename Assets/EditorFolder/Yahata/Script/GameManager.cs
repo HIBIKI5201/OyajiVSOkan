@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float NomalBattleTime;
     [SerializeField] private float FeverBattleTime;
     [SerializeField] private float FeverCutInTime;
-    private bool Feverbool;
+    public static bool Feverbool;
     void Start()
     {
         Timer = 0;

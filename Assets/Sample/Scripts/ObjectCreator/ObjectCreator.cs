@@ -20,6 +20,14 @@ public class ObjectCreator : MonoBehaviour
     [Header("生成のインターバル")]
     [SerializeField]
     private float _createInterval = 1.0f;
+    [SerializeField]
+    private float _createTresureInterval = 1.0f;
+    [Header("フィーバー中の生成のインターバル")]
+    [SerializeField]
+    private float _createIntervalFever = 1.0f;
+    [SerializeField]
+    private float _createTresureIntervalFever = 1.0f;
+
 
     [Header("生成する個数制限")]
     [SerializeField]
@@ -65,6 +73,7 @@ public class ObjectCreator : MonoBehaviour
 
     // インターバル計測用
     private float _timeCount = 0.0f;
+    private float _itemTimeCount = 0.0f;
     // 生成したオブジェクトの個数カウント用
     private int _createCount = 0;
     // オブジェクトを生成するかどうか
@@ -96,16 +105,39 @@ public class ObjectCreator : MonoBehaviour
 
         // インターバル時間を加算
         _timeCount += Time.deltaTime;
+        _itemTimeCount += Time.deltaTime;
 
         // インターバル時間に達したらオブジェクトを生成
-        if (_timeCount >= _createInterval)
+
+        if(GameManager.Feverbool)
         {
-            CreateObject();
-            _timeCount = 0.0f;
+            if (_timeCount >= _createIntervalFever)
+            {
+                CreateObject(false);
+                _timeCount = 0.0f;
+            }
+            if (_itemTimeCount >= _createTresureIntervalFever)
+            {
+                CreateObject(true);
+                _itemTimeCount = 0.0f;
+            }
+        } else
+        {
+            if (_timeCount >= _createInterval)
+            {
+                CreateObject(false);
+                _timeCount = 0.0f;
+            }
+            if (_itemTimeCount >= _createTresureInterval)
+            {
+                CreateObject(true);
+                _itemTimeCount = 0.0f;
+            }
         }
+
     }
 
-    private void CreateObject()
+    private void CreateObject(bool _isTreasure)
     {
         // 生成する個数制限があるかチェック
         if (_isCreateCountLimit)
@@ -141,22 +173,33 @@ public class ObjectCreator : MonoBehaviour
 
 
         GameObject createObj = null;
-        // 生成するオブジェクトをランダムにするかチェック
-        if (_isRandom)
-        {
-            // CreateObjectの配列の中からランダムに選択
-            int index = Random.Range(0, _createObjects.Length);
-            createObj = _createObjects[index];
-        }
-        else
-        {
-            // CreateObjectの配列の中から順番に選択
-            int index = _createCount % _createObjects.Length;
-            createObj = _createObjects[index];
 
-            // 生成したオブジェクトの個数カウントを加算
-            _createCount++;
+        if (_isTreasure)
+        {
+            int index = 1;
+            createObj = _createObjects[index];
+        } else
+        {
+            // 生成するオブジェクトをランダムにするかチェック
+            if (_isRandom)
+            {
+                // CreateObjectの配列の中からランダムに選択
+                int index = Random.Range(0, _createObjects.Length);
+                createObj = _createObjects[index];
+            }
+            else
+            {
+                // CreateObjectの配列の中から順番に選択
+                int index = _createCount % _createObjects.Length;
+                createObj = _createObjects[index];
+
+                // 生成したオブジェクトの個数カウントを加算
+                _createCount++;
+            }
         }
+
+        
+        
 
         //ランダムな角度を計算
         float AngleIndex = Random.Range(-SpawnAngle, SpawnAngle) -90;
@@ -177,6 +220,11 @@ public class ObjectCreator : MonoBehaviour
         if (_parentObject != null)
         {
             createObj.transform.SetParent(_parentObject);
+        }
+
+        if(_isTreasure)
+        {
+            createObj.GetComponent<ItemManager>().Treasure = true;
         }
 
         // 自動で生成を行い続ける設定ではなかった場合、生成時にフラグを下げる

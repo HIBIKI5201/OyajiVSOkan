@@ -15,14 +15,27 @@ public class ItemManager : MonoBehaviour
         Figure
     }
 
+    public bool Treasure;
+
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private Sprite[] itemSprite;
 
     void Start()
     {
-        System.Array values = System.Enum.GetValues(typeof(ItemKind));
-        int randomIndex = Random.Range(0, values.Length);
-        itemKind = (ItemKind)values.GetValue(randomIndex);
+        if (Treasure)
+        {
+            System.Array values = System.Enum.GetValues(typeof(ItemKind));
+            int randomIndex = Random.Range(3, 5);
+            itemKind = (ItemKind)values.GetValue(randomIndex);
+        } else
+        {
+            System.Array values = System.Enum.GetValues(typeof(ItemKind));
+            int randomIndex = Random.Range(0, 3);
+            itemKind = (ItemKind)values.GetValue(randomIndex);
+        }
+
+
+
 
         if (itemKind == ItemKind.Sake)
         {
