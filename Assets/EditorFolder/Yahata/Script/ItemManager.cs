@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnemyManager;
 
 public class ItemManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ItemManager : MonoBehaviour
     {
         Sake,
         Tsumami,
+        Takoyaki,
+        Ring,
+        Figure
     }
 
     [SerializeField] private SpriteRenderer renderer;
@@ -16,7 +20,11 @@ public class ItemManager : MonoBehaviour
 
     void Start()
     {
-        if(itemKind == ItemKind.Sake)
+        System.Array values = System.Enum.GetValues(typeof(ItemKind));
+        int randomIndex = Random.Range(0, values.Length);
+        itemKind = (ItemKind)values.GetValue(randomIndex);
+
+        if (itemKind == ItemKind.Sake)
         {
             renderer.sprite = itemSprite[0];
         }
@@ -24,6 +32,18 @@ public class ItemManager : MonoBehaviour
         {
             renderer.sprite = itemSprite[1];
         } 
+        else if(itemKind == ItemKind.Takoyaki)
+        {
+            renderer.sprite = itemSprite[2];
+        }
+        else if(itemKind == ItemKind.Ring)
+        {
+            renderer.sprite = itemSprite[3];
+        }
+        else if( itemKind == ItemKind.Figure)
+        {
+            renderer.sprite = itemSprite[4];
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,7 +54,7 @@ public class ItemManager : MonoBehaviour
 
             if (itemKind == ItemKind.Tsumami)
             {
-                Debug.Log("回復アイテムを取得");
+                Debug.Log("つまみを取得");
 
                 GameManager.Score += 200;
             }
@@ -49,8 +69,25 @@ public class ItemManager : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.Health += 10;
+                    GameManager.Health -= 10;
                 }
+
+                GameManager.Drink += 50;
+            }
+            else if(itemKind == ItemKind.Takoyaki)
+            {
+                Debug.Log("たこやきを取得");
+                GameManager.Health += 5;
+            }
+            else if(itemKind == ItemKind.Ring)
+            {
+                Debug.Log("指輪を取得");
+                GameManager.Score += 2000;
+            }
+            else if(itemKind == ItemKind.Figure)
+            {
+                Debug.Log("フィギュアを取得");
+                GameManager.Score += 500;
             }
 
             Destroy(gameObject);

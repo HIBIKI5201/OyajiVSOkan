@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower;
 
+    [SerializeField] BoxCollider2D attackCollider;
+    [SerializeField] float _attackTime;
+
     Vector2 firstScale;
 
     void Start()
@@ -28,6 +31,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator Attack()
+    {
+        attackCollider.enabled = true;
+
+        yield return new WaitForSeconds(_attackTime);
+
+        attackCollider.enabled = false;
+    }
+
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -35,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (horizontal != 0)
         {
             playerRB.velocity = new Vector2(horizontal * _moveSpeed, playerRB.velocity.y);
-            transform.localScale = new Vector2(horizontal * firstScale.x, firstScale.y) ;
+            transform.localScale = new Vector2(horizontal * firstScale.x, firstScale.y);
         }
     }
 
@@ -44,6 +56,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerRB.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+        }
+
+        if(Input.GetKeyDown(KeyCode.RightShift))
+        {
+            StartCoroutine(Attack());
         }
     }
 }

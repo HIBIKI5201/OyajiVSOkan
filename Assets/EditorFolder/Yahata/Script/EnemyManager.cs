@@ -33,7 +33,11 @@ public class EnemyManager : MonoBehaviour
         goAxis = 1;
         onGround = true;
 
-        if(enemyKind == EnemyKind.Spider || enemyKind == EnemyKind.G || enemyKind == EnemyKind.Dog)
+        System.Array values = System.Enum.GetValues(typeof(EnemyKind));
+        int randomIndex = Random.Range(0, values.Length);
+        enemyKind = (EnemyKind)values.GetValue(randomIndex);
+
+        if (enemyKind == EnemyKind.Spider || enemyKind == EnemyKind.G || enemyKind == EnemyKind.Dog)
         {
             trueAI = true;
         }
@@ -54,8 +58,20 @@ public class EnemyManager : MonoBehaviour
         }
         else if(enemyKind == EnemyKind.Dog)
         {
-            //enemyRenderer.sprite = enemySprite[2];
+            enemyRenderer.sprite = enemySprite[2];
             _enemyMoveSpeed = 3f;
+        }
+        else if (enemyKind == EnemyKind.Paper)
+        {
+            enemyRenderer.sprite = enemySprite[3];
+        }
+        else if(enemyKind == EnemyKind.Smoke)
+        {
+            enemyRenderer.sprite = enemySprite[4];
+        }
+        else if(enemyKind == EnemyKind.Fridge)
+        {
+            enemyRenderer.sprite = enemySprite[5];
         }
     }
 
@@ -71,28 +87,37 @@ public class EnemyManager : MonoBehaviour
             playerAngle = GameObject.Find("Player").GetComponent<Transform>().localScale.x;
             EnemyRB.velocity = new Vector2(3 * playerAngle, 10);
 
-            if(enemyKind == EnemyKind.Spider)
+            EnemyRB.freezeRotation = false;
+            EnemyRB.AddTorque(90);
+
+            if (enemyKind == EnemyKind.Spider)
             {
+                Debug.Log("’wå‚ğ“|‚µ‚½");
                 GameManager.Score += 50;
             } 
             else if(enemyKind == EnemyKind.G)
             {
+                Debug.Log("ƒSƒLƒuƒŠ‚ğ“|‚µ‚½");
                 GameManager.Score += 100;
             }
             else if(enemyKind== EnemyKind.Dog)
             {
+                Debug.Log("Œ¢‚ğ“|‚µ‚½");
                 GameManager.Score += 200;
             }
             else if(enemyKind == EnemyKind.Paper)
             {
+                Debug.Log("ƒeƒBƒbƒVƒ…‚ğ“|‚µ‚½");
                 GameManager.Score += 50;
             }
             else if(enemyKind == EnemyKind.Smoke)
             {
+                Debug.Log("ƒ^ƒoƒR‚ğ“|‚µ‚½");
                 GameManager.Score += 100;
             }
             else if(enemyKind == EnemyKind.Fridge)
             {
+                Debug.Log("—â‘ ŒÉ‚ğ“|‚µ‚½");
                 GameManager.Score += 200;
             }
         }

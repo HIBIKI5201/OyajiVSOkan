@@ -11,8 +11,12 @@ public class GameManager : MonoBehaviour
     public static int Score;
     [SerializeField] private Image HPbar;
     public static float Health;
+    [SerializeField] private Image Drinkbar;
+    public static float Drink;
 
     [SerializeField] private float PLHealth;
+    [SerializeField] private float PLDrink;
+    [SerializeField] private float DrinkDecrease;
 
     [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] private TextMeshProUGUI ScoreText;
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
         Timer = 0;
         Score = 0;
         Health = PLHealth;
+        Drink = 0;
     }
 
     void Update()
@@ -34,5 +39,15 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "Score\n" + Score.ToString("D8");
 
         HPbar.fillAmount = Health / PLHealth;
+        if (Health <= 0)
+        {
+            Debug.Log("GameOver");
+        }
+        
+        if(Drink > 0)
+        {
+            Drink -= DrinkDecrease * Time.deltaTime;
+        }
+        Drinkbar.fillAmount = Drink / PLDrink;
     }
 }
