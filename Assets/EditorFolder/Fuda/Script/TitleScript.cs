@@ -49,6 +49,11 @@ public class TitleScript : MonoBehaviour
                 audioSource.PlayOneShot(_enterSE);
                 SceneManager.LoadScene("InGame");
             }
+            else if (_menuCount == 1)
+            {
+                audioSource.PlayOneShot(_enterSE);
+                SceneManager.LoadScene("Help");
+            }
             else 
             {
                 audioSource.PlayOneShot(_missSE);
