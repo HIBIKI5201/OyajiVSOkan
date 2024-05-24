@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("“G‚É‚Ô‚Â‚©‚Á‚½");
+            GameManager.Health--;
+
+            Debug.Log(GameManager.Health);
         }
 
         if (collision.gameObject.CompareTag("Item"))
@@ -30,6 +33,8 @@ public class PlayerController : MonoBehaviour
             if(getItemKind == ItemManager.ItemKind.AidKit)
             {
                 Debug.Log("‰ñ•œƒAƒCƒeƒ€‚ðŽæ“¾");
+
+                GameManager.Score += 200;
             } 
             else if(getItemKind == ItemManager.ItemKind.Sake)
             {

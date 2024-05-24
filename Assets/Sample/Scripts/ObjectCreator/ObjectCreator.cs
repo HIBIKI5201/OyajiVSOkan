@@ -162,7 +162,7 @@ public class ObjectCreator : MonoBehaviour
         float AngleIndex = Random.Range(-SpawnAngle, SpawnAngle) -90;
 
         // オブジェクトを生成
-        createObj = Instantiate(createObj, createPos, Quaternion.Euler(0, 0, AngleIndex));
+        createObj = Instantiate(createObj, createPos, Quaternion.identity);
 
         // 角度をラジアンに変換
         float radians = AngleIndex * Mathf.Deg2Rad;
