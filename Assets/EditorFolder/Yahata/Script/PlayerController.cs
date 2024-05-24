@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Health--;
 
             Debug.Log(GameManager.Health);
+            
         }
 
         if (collision.gameObject.CompareTag("Item"))

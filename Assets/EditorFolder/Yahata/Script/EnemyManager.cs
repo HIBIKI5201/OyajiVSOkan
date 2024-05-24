@@ -23,29 +23,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Vector2 collisionNormal = collision.contacts[0].normal;
-
-            if(collisionNormal.y >= 0.8)
-            {
-                onGround = true;
-            }
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Ground"))
-        {
-            Vector2 collisionNormal = collision.contacts[0].normal;
-
-            if(collisionNormal.x  > 0.8f)
-            {
-                goAxis = 1;
-            }
-            else if (collisionNormal.x < -0.8f)
-            {
-                goAxis= -1;
-            }
+            onGround = true;
         }
     }
 
@@ -62,13 +40,18 @@ public class EnemyManager : MonoBehaviour
             EnemyRB.velocity = new Vector2(6 * playerAngle, 10);
             //StartCoroutine(EnemyDead());
         }
+
+        if(collision.gameObject.CompareTag("EnemyTurn"))
+        {
+            goAxis *= -1;
+        }
     }
 
     void Update()
     {
         if (onGround && !enemyDead)
         {
-            EnemyRB.velocity = new Vector2(_enemyMoveSpeed * goAxis, 0);
+            EnemyRB.velocity = new Vector2(_enemyMoveSpeed * goAxis, EnemyRB.velocity.y);
         }
     }
 }
