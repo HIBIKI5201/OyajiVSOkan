@@ -12,6 +12,8 @@ public class EnemyManager : MonoBehaviour
     private bool enemyDead;
     [SerializeField] private float _enemyMoveSpeed;
 
+    private float playerAngle;
+
     void Start()
     {
         goAxis = 1;
@@ -21,7 +23,12 @@ public class EnemyManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            onGround = true;
+            Vector2 collisionNormal = collision.contacts[0].normal;
+
+            if(collisionNormal.y >= 0.8)
+            {
+                onGround = true;
+            }
         }
     }
 
@@ -30,7 +37,6 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             Vector2 collisionNormal = collision.contacts[0].normal;
-            Debug.Log(collisionNormal.x);
 
             if(collisionNormal.x  > 0.8f)
             {
@@ -40,7 +46,6 @@ public class EnemyManager : MonoBehaviour
             {
                 goAxis= -1;
             }
-            
         }
     }
 
@@ -52,7 +57,9 @@ public class EnemyManager : MonoBehaviour
             onGround = false;
 
             GetComponent<CircleCollider2D>().enabled = false;
-            EnemyRB.velocity = new Vector2(-6, 10);
+
+            playerAngle = GameObject.Find("Player").GetComponent<Transform>().localScale.x;
+            EnemyRB.velocity = new Vector2(6 * playerAngle, 10);
             //StartCoroutine(EnemyDead());
         }
     }

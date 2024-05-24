@@ -43,6 +43,14 @@ public class ObjectCreator : MonoBehaviour
     [SerializeField]
     private Transform _parentObject = default;
 
+    [Header("生成したオブジェクトの角度の範囲")]
+    [SerializeField]
+    private float SpawnAngle = default;
+
+    [Header("生成したオブジェクトの速度")]
+    [SerializeField]
+    private float _spawnSpeed = default;
+
     /// <summary>
     /// 生成時の座標指定形式の種類
     /// </summary>
@@ -150,8 +158,21 @@ public class ObjectCreator : MonoBehaviour
             _createCount++;
         }
 
+        //ランダムな角度を計算
+        float AngleIndex = Random.Range(-SpawnAngle, SpawnAngle) -90;
+
         // オブジェクトを生成
-        createObj = Instantiate(createObj, createPos, Quaternion.identity);
+        createObj = Instantiate(createObj, createPos, Quaternion.Euler(0, 0, AngleIndex));
+
+        // 角度をラジアンに変換
+        float radians = AngleIndex * Mathf.Deg2Rad;
+
+        // xとyの速度成分を計算
+        float velocityX = Mathf.Cos(radians) * _spawnSpeed;
+        float velocityY = Mathf.Sin(radians) * _spawnSpeed;
+
+        // Rigidbody2Dの速度を設定
+     createObj.GetComponent<Rigidbody2D>().velocity = new Vector2(velocityX, velocityY);
 
         if (_parentObject != null)
         {
