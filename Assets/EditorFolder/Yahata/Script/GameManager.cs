@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
     public static float Health;
     [SerializeField] private Image Drinkbar;
     public static float Drink;
+    [SerializeField] private SpriteRenderer OyajiHead;
+    [SerializeField] private Sprite[] OyajiHeadSprite;
 
-    [Header("プレイヤーステータスとワールド設定")]
+
+[Header("プレイヤーステータスとワールド設定")]
     [SerializeField] private float PLHealth;
     [SerializeField] private float PLDrink;
     [SerializeField] private float DrinkDecrease;
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
     [Header("UIオブジェクト")]
     [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] private TextMeshProUGUI ScoreText;
+
 
     [Header("時間設定")]
     [SerializeField] private float NomalBattleTime;
