@@ -33,6 +33,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int[] _hetScore;
     [SerializeField] private int[] _hitDamage;
 
+    //追加変数
+    private bool _spiderWebLaunch = false;
+    private GameObject _spiderWeb;
+    private Vector3 _aimedPosition;
+    //ここまで
 
     private float playerAngle;
 
@@ -56,12 +61,27 @@ public class EnemyManager : MonoBehaviour
 
         if(enemyKind == EnemyKind.Spider)
         {
-            enemyRenderer.sprite = enemySprite[0];
+            //変更点↓
+            Destroy(GetComponent<SpriteRenderer>());
+            GameObject _spider = Instantiate(transform.parent.gameObject.transform.Find("SpiderEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
+            _spider.SetActive(true);
+            _spider.transform.parent = transform;
+
+            // enemyRenderer.sprite = enemySprite[0];
+            //変更点↑
             _enemyMoveSpeed = _enemySpeed[0];
         }
         else if(enemyKind == EnemyKind.G)
         {
-            enemyRenderer.sprite = enemySprite[1];
+            //変更点↓
+            Destroy(GetComponent<SpriteRenderer>());
+            GameObject _goki = Instantiate(transform.parent.gameObject.transform.Find("GokiEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
+            _goki.SetActive(true);
+            _goki.transform.parent = transform;
+            //コダイダー
+            gameObject.GetComponent<CircleCollider2D>().radius = 0.3f;
+            // enemyRenderer.sprite = enemySprite[1];
+            //変更点↑
             _enemyMoveSpeed = _enemySpeed[1];
         }
         else if(enemyKind == EnemyKind.Dog)
@@ -135,6 +155,12 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.CompareTag("EnemyTurn"))
         {
             goAxis *= -1;
+            //現状GだけなのでGだけを指定しました。3Dモデルが増えるならbool増やせば同様に使えますね。
+            if (enemyKind == EnemyKind.G)
+            {
+                transform.rotation = transform.rotation * new Quaternion(0, 1, 0, 0);
+            }
+            //ここまで
         }
     }
 
@@ -175,7 +201,40 @@ public class EnemyManager : MonoBehaviour
     {
         if (onGround && !enemyDead && trueAI)
         {
-            EnemyRB.velocity = new Vector2(_enemyMoveSpeed * goAxis, EnemyRB.velocity.y);
+            //変更点↓　一定の高さにまで落ちたら止まる。
+            if (enemyKind == EnemyKind.Spider && transform.position.y < 2.5f)
+            {
+                EnemyRB.velocity = Vector2.zero;
+                EnemyRB.gravityScale = 0.05f;
+                //クモ止まった後playerめがけて糸を吐く
+                if (!_spiderWebLaunch)
+                {
+                    _spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
+                    _spiderWeb.SetActive(true);
+                    _spiderWeb.transform.parent = transform.parent.parent;
+                    _aimedPosition = GameObject.Find("Player").GetComponent<Transform>().transform.position;
+                }
+                _spiderWebLaunch = true;
+
+            }
+            else
+            {
+                EnemyRB.velocity = new Vector2(_enemyMoveSpeed * goAxis, EnemyRB.velocity.y);
+            }
+            //ここまで
         }
     }
+    //フレームレート下がってもゲームスピードとオブジェクトの動きが一致するようにFixedUpdateで記述しました。
+    private void FixedUpdate()
+    {
+        if (_spiderWebLaunch)
+        {
+            _spiderWeb.transform.position += (_aimedPosition - _spiderWeb.transform.position) * 0.01f;
+            if (_spiderWeb.transform.position == _aimedPosition)
+            {
+                _spiderWebLaunch = false;
+            }
+        }
+    }
+    //ここまで
 }

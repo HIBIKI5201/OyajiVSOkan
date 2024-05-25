@@ -10,6 +10,7 @@ TagManager:
   - EnemyReturn
   - EnemyTurn
   - Ground
+  - Trap
   layers:
   - Default
   - TransparentFX

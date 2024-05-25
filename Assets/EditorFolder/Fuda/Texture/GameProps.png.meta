@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 180
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GameProps_0
+      name: Sake
       rect:
         serializedVersion: 2
         x: 26
@@ -328,7 +328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_11
+      name: Ring
       rect:
         serializedVersion: 2
         x: 1086
@@ -433,13 +433,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_16
+      name: Snack
       rect:
         serializedVersion: 2
-        x: 1561
-        y: 1717
-        width: 446
-        height: 305
+        x: 1573
+        y: 1832
+        width: 261
+        height: 176
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,7 +454,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_17
+      name: ChabuTable
       rect:
         serializedVersion: 2
         x: 1574
@@ -475,7 +475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_18
+      name: GolfBag
       rect:
         serializedVersion: 2
         x: 1234
@@ -496,7 +496,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_19
+      name: FlyingPan
       rect:
         serializedVersion: 2
         x: 827
@@ -517,7 +517,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_20
+      name: FreezerOpend
       rect:
         serializedVersion: 2
         x: 530
@@ -538,7 +538,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_21
+      name: FreezerBitOpened
       rect:
         serializedVersion: 2
         x: 283
@@ -559,7 +559,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GameProps_22
+      name: Freezer
       rect:
         serializedVersion: 2
         x: 21
@@ -588,7 +588,7 @@ TextureImporter:
         width: 95
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -609,7 +609,7 @@ TextureImporter:
         width: 108
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -630,7 +630,7 @@ TextureImporter:
         width: 73
         height: 113
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -651,7 +651,7 @@ TextureImporter:
         width: 198
         height: 194
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -674,22 +674,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GameProps_0: -1619785848
+      ChabuTable: 2039426564
+      FlyingPan: -1529620493
+      Freezer: 832787141
+      FreezerBitOpened: -400349364
+      FreezerOpend: 1138029893
       GameProps_1: 468629458
       GameProps_10: -1969658174
-      GameProps_11: -935306191
       GameProps_12: 1925805834
       GameProps_13: 1882073305
       GameProps_14: 739387407
       GameProps_15: -161817805
-      GameProps_16: -1140090588
-      GameProps_17: 2039426564
-      GameProps_18: -1253933545
-      GameProps_19: -1529620493
       GameProps_2: -1133006354
-      GameProps_20: 1138029893
-      GameProps_21: -400349364
-      GameProps_22: 832787141
       GameProps_23: -1562263129
       GameProps_24: 4468413
       GameProps_25: -225115349
@@ -701,6 +697,10 @@ TextureImporter:
       GameProps_7: -1777047248
       GameProps_8: 206779658
       GameProps_9: 943686199
+      GolfBag: -1253933545
+      Ring: -935306191
+      Sake: -1619785848
+      Snack: -1140090588
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
