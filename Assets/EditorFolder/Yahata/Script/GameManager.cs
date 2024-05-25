@@ -9,24 +9,30 @@ public class GameManager : MonoBehaviour
 {
     public static float Timer;
     public static int Score;
+    [Header("UIバーの設定")]
     [SerializeField] private Image HPbar;
     public static float Health;
     [SerializeField] private Image Drinkbar;
     public static float Drink;
 
+    [Header("プレイヤーステータスとワールド設定")]
     [SerializeField] private float PLHealth;
     [SerializeField] private float PLDrink;
     [SerializeField] private float DrinkDecrease;
 
+    [Header("UIオブジェクト")]
     [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] private TextMeshProUGUI ScoreText;
 
+    [Header("時間設定")]
     [SerializeField] private float NomalBattleTime;
     [SerializeField] private float FeverBattleTime;
     [SerializeField] private float FeverCutInTime;
     public static bool Feverbool;
 
     public static int[] getItems;
+
+    //インゲーム開始時の初期設定
     void Start()
     {
         Timer = 0;
@@ -35,6 +41,7 @@ public class GameManager : MonoBehaviour
         Drink = 0;
     }
 
+    //フィーバー
     private IEnumerator FeverTime()
     {
         Time.timeScale = 0;

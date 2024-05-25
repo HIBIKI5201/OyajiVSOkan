@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D playerRB;
 
+    [Header("プレイヤーの移動ステータス")]
     [SerializeField] float _moveSpeed;
     [SerializeField] float _jumpPower;
 
+    [Header("攻撃システム")]
     [SerializeField] BoxCollider2D attackCollider;
     [SerializeField] float _attackTime;
 
@@ -18,6 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         firstScale = transform.localScale;
     }
+
+    //衝突したときの処理
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -31,6 +35,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //攻撃キーを押された時の処理
     private IEnumerator Attack()
     {
         attackCollider.enabled = true;
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour
         attackCollider.enabled = false;
     }
 
+    //左右移動の処理
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -51,6 +57,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //ジャンプ・攻撃キーの処理
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

@@ -17,6 +17,7 @@ public class ItemManager : MonoBehaviour
 
     public bool Treasure;
 
+    [Header("スプライトの種類")]
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private Sprite[] itemSprite;
 
