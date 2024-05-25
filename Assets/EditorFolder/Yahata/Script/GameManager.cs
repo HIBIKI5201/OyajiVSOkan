@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public static float Drink;
     [SerializeField] private SpriteRenderer OyajiHead;
     [SerializeField] private Sprite[] OyajiHeadSprite;
+    private int OyajiHeadNumber;
 
 
 [Header("プレイヤーステータスとワールド設定")]
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
         if (Health <= 0)
         {
             Debug.Log("GameOver");
+            Time.timeScale = 0 ;
         }
         
         if(Drink > 0)
@@ -89,5 +91,27 @@ public class GameManager : MonoBehaviour
             Drink -= DrinkDecrease * Time.deltaTime;
         }
         Drinkbar.fillAmount = Drink / PLDrink;
+
+        if(Health / PLHealth >= 0.75)
+        {
+            OyajiHeadNumber = 2;
+        }
+        else if (Health / PLHealth >= 0.25)
+        {
+            OyajiHeadNumber = 1;
+        }
+        else
+        {
+            OyajiHeadNumber = 0;
+        }
+        
+        if(Drink / PLDrink >= 0.01)
+        {
+            OyajiHeadNumber += 3;
+        }
+
+        Debug.Log(Health / PLHealth);
+
+        OyajiHead.sprite = OyajiHeadSprite[OyajiHeadNumber];
     }
 }
