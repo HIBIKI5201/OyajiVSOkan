@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Ground
   - EnemyTurn
+  - Text
+  - GameManager
   layers:
   - Default
   - TransparentFX
