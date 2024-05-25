@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
         attackCollider.enabled = false;
     }
 
-<<<<<<< HEAD
     private IEnumerator Get()
     {
         //Getƒ‚[ƒVƒ‡ƒ“’Ç‰Á
@@ -60,9 +59,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("‚ ‚¢‚Ä‚Þ");
     }
 
-=======
-    //¶‰EˆÚ“®‚Ìˆ—
->>>>>>> c076e9752aadc439ae0a2da2e38e86e88e53c184
+
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
