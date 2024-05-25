@@ -65,7 +65,9 @@ public class EnemyManagerTest : MonoBehaviour
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
             GameObject _goki = Instantiate(transform.parent.gameObject.transform.Find("GokiEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
+            _goki.activeSelf = true;
             _goki.transform.parent = transform;
+
 
             // enemyRenderer.sprite = enemySprite[1];
             //変更点↑
