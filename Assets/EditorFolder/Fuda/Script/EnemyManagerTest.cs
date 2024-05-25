@@ -14,8 +14,9 @@ public class EnemyManagerTest : MonoBehaviour
     private bool trueAI;
 
     //変更点
-    private bool enemy3D = false;
-    [SerializeField] private float turnSpeed = 0.2f;
+    private bool enemy3DTurn = false;
+    private bool _spiderWebLaunch = false;
+    private GameObject _spiderWeb;
 
     public EnemyKind enemyKind;
     public enum EnemyKind
@@ -54,18 +55,20 @@ public class EnemyManagerTest : MonoBehaviour
         {
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
-            GameObject _spider = Instantiate(transform.parent.gameObject.transform.Find("SpiderEnemy").gameObject,transform.position, Quaternion.identity) as GameObject; 
+            GameObject _spider = Instantiate(transform.parent.gameObject.transform.Find("SpiderEnemy").gameObject,transform.position, Quaternion.identity) as GameObject;
+            _spider.SetActive(true);
             _spider.transform.parent = transform;
-           // enemyRenderer.sprite = enemySprite[0];
-           //変更点↑
-           _enemyMoveSpeed = 1.5f;
+            
+            // enemyRenderer.sprite = enemySprite[0];
+            //変更点↑
+            _enemyMoveSpeed = 1.5f;
         }
         else if (enemyKind == EnemyKind.G)
         {
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
             GameObject _goki = Instantiate(transform.parent.gameObject.transform.Find("GokiEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
-            _goki.activeSelf = true;
+            _goki.SetActive(true);
             _goki.transform.parent = transform;
 
 
@@ -104,6 +107,7 @@ public class EnemyManagerTest : MonoBehaviour
 
             playerAngle = GameObject.Find("Player").GetComponent<Transform>().localScale.x;
             EnemyRB.velocity = new Vector2(3 * playerAngle, 10);
+            EnemyRB.gravityScale = 0.05f;
 
             EnemyRB.freezeRotation = false;
             EnemyRB.AddTorque(90);
@@ -147,7 +151,7 @@ public class EnemyManagerTest : MonoBehaviour
             goAxis *= -1;
             if(enemyKind== EnemyKind.G)
             {
-                enemy3D = true;
+                transform.rotation = transform.rotation * new Quaternion(0, 1, 0, 0);
             }
         }
     }
@@ -190,9 +194,19 @@ public class EnemyManagerTest : MonoBehaviour
         if (onGround && !enemyDead && trueAI)
         {
             //変更点↓　一定の高さにまで落ちたら止まる。
-            if (enemyKind == EnemyKind.Spider && transform.position.y < 2.0f)
+            if (enemyKind == EnemyKind.Spider && transform.position.y < 2.5f)
             {
                 EnemyRB.velocity = Vector2.zero;
+                //クモ止まった後playerめがけて糸を吐く
+                if (!_spiderWebLaunch)
+                {
+                    _spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
+                    _spiderWeb.SetActive(true);
+                    _spiderWeb.transform.parent = transform;
+                    _spiderWeb.transform.LookAt(GameObject.Find("Player").GetComponent<Transform>().transform.position);
+                }
+                _spiderWebLaunch = true;
+
             }
             else
             {
@@ -200,11 +214,5 @@ public class EnemyManagerTest : MonoBehaviour
             }
         }
     }
-    private void FixedUpdate()
-    {
-        if (enemy3D)
-        {
-            transform.rotation = transform.rotation * new Quaternion(0,0,0,1);
-        }
-    }
+    
 }
