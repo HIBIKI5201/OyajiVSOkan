@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [Header("攻撃システム")]
     [SerializeField] BoxCollider2D attackCollider;
     [SerializeField] float _attackTime;
+    [SerializeField] BoxCollider2D getCollider;
+    [SerializeField] float _getTime;
 
     Vector2 firstScale;
 
@@ -45,7 +47,22 @@ public class PlayerController : MonoBehaviour
         attackCollider.enabled = false;
     }
 
+<<<<<<< HEAD
+    private IEnumerator Get()
+    {
+        //Getモーション追加
+        getCollider.enabled = true;
+
+        yield return new WaitForSeconds(_getTime);
+
+        getCollider.enabled = false;
+
+        Debug.Log("あいてむ");
+    }
+
+=======
     //左右移動の処理
+>>>>>>> c076e9752aadc439ae0a2da2e38e86e88e53c184
     private void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -68,6 +85,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.RightShift))
         {
             StartCoroutine(Attack());
+        }
+
+        // Getモーションを追加
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            StartCoroutine(Get());
         }
     }
 }
