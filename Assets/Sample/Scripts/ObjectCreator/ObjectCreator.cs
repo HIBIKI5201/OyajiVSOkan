@@ -82,6 +82,8 @@ public class ObjectCreator : MonoBehaviour
     // オブジェクトを生成するかどうか
     private bool _isCreate = false;
 
+    int index;
+
 
     private void Start()
     {
@@ -189,7 +191,17 @@ public class ObjectCreator : MonoBehaviour
             if (_isRandom)
             {
                 // CreateObjectの配列の中からランダムに選択
-                int index = Random.Range(0, _createObjects.Length);
+                int randomIndex = Random.Range(1, 101);
+                if(randomIndex <= 80)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index = 1;
+                }
+
+                index = Random.Range(0, _createObjects.Length);
                 createObj = _createObjects[index];
             }
             else
