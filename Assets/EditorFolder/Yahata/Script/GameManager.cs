@@ -93,10 +93,17 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "Score\n" + Score.ToString("D8");
 
         HPbar.fillAmount = Health / PLHealth;
+        if(Health >= PLHealth) 
+        {
+            Health = PLHealth;
+        }
+
+        Debug.Log(Health);
+
         if (Health <= 0)
         {
             Debug.Log("GameOver");
-            sceneChanger.SwitchScene("YahataSence");
+            sceneChanger.SwitchScene("Result");
         }
         
         if(Drink > 0)
