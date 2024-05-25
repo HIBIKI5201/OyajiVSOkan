@@ -52,9 +52,12 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6755902579700078637}
   itemSprite:
   - {fileID: 21300000, guid: 75b701da99662044994c9fa99b26c2c4, type: 3}
+  - {fileID: -1619785848, guid: 8426e1e06cd61364c81a749745793765, type: 3}
   - {fileID: 21300000, guid: c455fc27ec7b09443b0b4fcab982ce04, type: 3}
+  - {fileID: -1140090588, guid: 8426e1e06cd61364c81a749745793765, type: 3}
   - {fileID: 21300000, guid: 4e0b0865392fb0840bab43f53b054b9e, type: 3}
   - {fileID: 21300000, guid: f98f8e5e0b40c9a4e86dc535d1f494db, type: 3}
+  - {fileID: -935306191, guid: 8426e1e06cd61364c81a749745793765, type: 3}
   - {fileID: 21300000, guid: 8df606c47723dca43b7ffdb98c38a68f, type: 3}
   _healAmount: 05000000140000000a0000000a000000
   _getScore: d0070000f4010000
@@ -108,7 +111,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6144874652118246413

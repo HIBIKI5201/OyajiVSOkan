@@ -45,23 +45,30 @@ public class ItemManager : MonoBehaviour
 
         if (itemKind == ItemKind.Sake)
         {
-            spriteRenderer.sprite = itemSprite[0];
+            int random = Random.Range(0, 2);
+            spriteRenderer.sprite = itemSprite[random];
+            spriteRenderer.sprite = itemSprite[random];
         }
         else if (itemKind == ItemKind.Tsumami)
         {
-            spriteRenderer.sprite = itemSprite[1];
+            int random = Random.Range(2, 4);
+            spriteRenderer.sprite = itemSprite[random];
+            spriteRenderer.sprite = itemSprite[random];
+
         } 
         else if(itemKind == ItemKind.Takoyaki)
         {
-            spriteRenderer.sprite = itemSprite[2];
+            spriteRenderer.sprite = itemSprite[4];
         }
         else if(itemKind == ItemKind.Ring)
         {
-            spriteRenderer.sprite = itemSprite[3];
+            int random = Random.Range(5, 7);
+            spriteRenderer.sprite = itemSprite[random];
+            spriteRenderer.sprite = itemSprite[random];
         }
         else if( itemKind == ItemKind.Figure)
         {
-            spriteRenderer.sprite = itemSprite[4];
+            spriteRenderer.sprite = itemSprite[7];
         }
 
         
