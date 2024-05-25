@@ -202,7 +202,7 @@ public class EnemyManagerTest : MonoBehaviour
                 {
                     _spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
                     _spiderWeb.SetActive(true);
-                    _spiderWeb.transform.parent = transform;
+                    _spiderWeb.transform.parent = transform.root.transform.gameObject.transform.parent;
                     _spiderWeb.transform.LookAt(GameObject.Find("Player").GetComponent<Transform>().transform.position);
                 }
                 _spiderWebLaunch = true;
@@ -214,5 +214,11 @@ public class EnemyManagerTest : MonoBehaviour
             }
         }
     }
-    
+    private void FixedUpdate()
+    {
+        if (_spiderWebLaunch)
+        {
+           _spiderWeb.transform.position += new Vector3(1.0f,0,0);
+        }
+    }
 }
