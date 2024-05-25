@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/EditorFolder/saktata/Result.unity
+    guid: a58f686747743b24fadebf056c289dfb
+  - enabled: 1
     path: Assets/EditorFolder/Yahata/YahataSence.unity
     guid: 62e6e4eae8e445748bd02f27d557545b
   - enabled: 1
-    path: Assets/EditorFolder/saktata/Result.unity
-    guid: a58f686747743b24fadebf056c289dfb
+    path: Assets/EditorFolder/Fuda/Title.unity
+    guid: 9e5667896e5476546b9ce210608068ac
   m_configObjects: {}
