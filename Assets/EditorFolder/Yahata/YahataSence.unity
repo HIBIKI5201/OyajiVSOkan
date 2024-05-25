@@ -193,8 +193,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 81915759
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 286215913, guid: 26465ef29d965dd49b90772ffd687fac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -262,8 +262,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 81915759
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ded974018cc85b3438be064d4f98c69e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -482,8 +482,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 81915759
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e155513ff28eec84783b1c0efcba17a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -758,9 +758,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 403773528857492698, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 403773528857492698, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 124762957
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910363576657987440, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910363576657987440, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 124762957
+      objectReference: {fileID: 0}
     - target: {fileID: 1957351321935762327, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570276290903496929, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570276290903496929, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 124762957
       objectReference: {fileID: 0}
     - target: {fileID: 4280765214909177107, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
       propertyPath: _getTime
@@ -829,6 +853,14 @@ PrefabInstance:
     - target: {fileID: 6549765393250164742, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090525529860651699, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090525529860651699, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 124762957
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
