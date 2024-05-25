@@ -128,7 +128,7 @@ public class ObjectCreator : MonoBehaviour
             }
         } else
         {
-            if (_timeCount >= _createInterval - _intervalDecreaseCount)
+            if (_timeCount >= _createInterval / _intervalDecreaseCount)
             {
                 CreateObject(false);
                 _timeCount = 0.0f;
