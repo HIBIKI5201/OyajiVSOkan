@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
     [Header("シーン切り替え")]
     [SerializeField] private SceneChanger sceneChanger;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClip;
+
+
     //インゲーム開始時の初期設定
     void Start()
     {
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour
         Score = 0;
         Health = PLHealth;
         Drink = 0;
+
+        audioSource.PlayOneShot(audioClip[0]);
     }
 
     //フィーバー
@@ -58,12 +64,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(FeverCutInTime);
         
         Time.timeScale = 1;
-
+        audioSource.PlayOneShot(audioClip[1]);
         Debug.Log("FeverTimeStart");
         yield return new WaitForSeconds(FeverBattleTime);
 
         Debug.Log("FeverTimeEnd");
         Feverbool = false;
+        audioSource.PlayOneShot(audioClip[0]);
     }
 
     void Update()
@@ -87,7 +94,7 @@ public class GameManager : MonoBehaviour
         if (Health <= 0)
         {
             Debug.Log("GameOver");
-            sceneChanger.SwitchScene("Result");
+            sceneChanger.SwitchScene("YahataSence");
         }
         
         if(Drink > 0)

@@ -47,7 +47,7 @@ public class TitleScript : MonoBehaviour
             if(_menuCount == 0)
             {
                 audioSource.PlayOneShot(_enterSE);
-                SceneManager.LoadScene("InGame");
+                SceneManager.LoadScene("YahataSence");
             }
             else if (_menuCount == 1)
             {

@@ -167,25 +167,13 @@ MonoBehaviour:
   enemySprite:
   - {fileID: 21300000, guid: f38631576342cad4bbff70fb95f3c7e5, type: 3}
   - {fileID: 21300000, guid: e3f4f7fe1a734e647b7b822f68ed27d1, type: 3}
-  - {fileID: 7482667652216324306, guid: d69f3d7f3f79f80449571192e3134e2b, type: 3}
+  - {fileID: 21300000, guid: 369afbd06f5715f4b8d81bc04d3a6b63, type: 3}
   - {fileID: 21300000, guid: f19815283e188854d9e3e9a7043b64a4, type: 3}
-  - {fileID: 7482667652216324306, guid: d69f3d7f3f79f80449571192e3134e2b, type: 3}
+  - {fileID: 21300000, guid: 2aaa25cdc1e9c1a4e8ff1c09bb3cbe13, type: 3}
   - {fileID: 7482667652216324306, guid: d69f3d7f3f79f80449571192e3134e2b, type: 3}
   _enemySpeed:
   - 1.5
   - 2.25
   - 3
-  _hetScore:
-  - 50
-  - 100
-  - 200
-  - 50
-  - 100
-  - 200
-  _hitDamage:
-  - 10
-  - 15
-  - 20
-  - 10
-  - 15
-  - 20
+  _hetScore: 3200000064000000c80000003200000064000000c8000000
+  _hitDamage: 0a0000000f000000140000000a0000000f00000014000000

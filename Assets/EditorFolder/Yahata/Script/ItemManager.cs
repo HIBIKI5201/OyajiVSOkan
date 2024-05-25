@@ -27,6 +27,9 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private int[] _getScore;
     [SerializeField] private float DestroyTime;
 
+    [Header("オーディオ")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
     void Start()
     {
         if (Treasure)
@@ -66,6 +69,8 @@ public class ItemManager : MonoBehaviour
         }
 
         Invoke("Destroy", DestroyTime);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -78,6 +83,7 @@ public class ItemManager : MonoBehaviour
             {
                 GameManager.Health += _healAmount[0];
                 Debug.Log("つまみを取得");
+                audioSource.PlayOneShot(audioClips[1]);
             }
             else if (itemKind == ItemKind.Sake)
             {
@@ -87,6 +93,7 @@ public class ItemManager : MonoBehaviour
                 if (index <= 80)
                 {
                     GameManager.Health += _healAmount[1];
+                    audioSource.PlayOneShot(audioClips[1]);
                 }
                 else
                 {
@@ -99,16 +106,19 @@ public class ItemManager : MonoBehaviour
             {
                 Debug.Log("たこやきを取得");
                 GameManager.Health += _healAmount[3];
+                audioSource.PlayOneShot(audioClips[1]);
             }
             else if(itemKind == ItemKind.Ring)
             {
                 Debug.Log("指輪を取得");
                 GameManager.Score += _getScore[0];
+                audioSource.PlayOneShot(audioClips[2]);
             }
             else if(itemKind == ItemKind.Figure)
             {
                 Debug.Log("フィギュアを取得");
                 GameManager.Score += _getScore[1];
+                audioSource.PlayOneShot(audioClips[2]);
             }
 
             Destroy(gameObject);
