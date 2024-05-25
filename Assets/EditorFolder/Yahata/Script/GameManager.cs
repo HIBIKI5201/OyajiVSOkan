@@ -66,12 +66,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(FeverCutInTime);
         
         Time.timeScale = 1;
+
+        audioSource.Stop();
         audioSource.PlayOneShot(audioClip[1]);
+
         Debug.Log("FeverTimeStart");
         yield return new WaitForSeconds(FeverBattleTime);
 
         Debug.Log("FeverTimeEnd");
         Feverbool = false;
+
+        audioSource.Stop();
         audioSource.PlayOneShot(audioClip[0]);
     }
 

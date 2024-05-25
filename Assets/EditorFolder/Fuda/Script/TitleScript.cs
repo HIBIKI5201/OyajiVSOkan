@@ -9,10 +9,6 @@ public class TitleScript : MonoBehaviour
 {
     [SerializeField] GameObject[] _menu;
     int _menuCount;
-
-    public AudioClip _selectSE;
-    public AudioClip _enterSE;
-    public AudioClip _missSE;
     AudioSource audioSource;
     void Start()
     {
@@ -25,7 +21,7 @@ public class TitleScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             _menuCount++;
-            audioSource.PlayOneShot(_selectSE);
+
             if (_menuCount == _menu.Length)
             {
                 _menuCount = 0;
@@ -35,7 +31,7 @@ public class TitleScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             _menuCount--;
-            audioSource.PlayOneShot(_selectSE);
+
             if (_menuCount == -1)
             {
                 _menuCount = _menu.Length-1;
@@ -46,17 +42,17 @@ public class TitleScript : MonoBehaviour
         {
             if(_menuCount == 0)
             {
-                audioSource.PlayOneShot(_enterSE);
+
                 SceneManager.LoadScene("YahataSence");
             }
             else if (_menuCount == 1)
             {
-                audioSource.PlayOneShot(_enterSE);
+
                 SceneManager.LoadScene("Help");
             }
             else 
             {
-                audioSource.PlayOneShot(_missSE);
+ 
             }
 
         }
