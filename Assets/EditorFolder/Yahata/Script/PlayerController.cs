@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BoxCollider2D getCollider;
     [SerializeField] float _getTime;
 
+    [Header("アニメーター")]
+    [SerializeField] Animator animator;
+
     Vector2 firstScale;
 
     void Start()
@@ -41,10 +44,15 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Attack()
     {
         attackCollider.enabled = true;
+        animator.SetBool("attack", true);
 
         yield return new WaitForSeconds(_attackTime);
 
         attackCollider.enabled = false;
+
+        yield return new WaitForSeconds(0.2f);
+
+        animator.SetBool("attack", false);
     }
 
     private IEnumerator Get()
@@ -68,6 +76,11 @@ public class PlayerController : MonoBehaviour
         {
             playerRB.velocity = new Vector2(horizontal * _moveSpeed, playerRB.velocity.y);
             transform.localScale = new Vector2(horizontal * firstScale.x, firstScale.y);
+
+            animator.SetBool("move", true);
+        } else
+        {
+            animator.SetBool("move", false);
         }
     }
 

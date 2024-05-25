@@ -24,7 +24,7 @@ public class ObjectCreator : MonoBehaviour
     private float _createTresureInterval = 1.0f;
     [SerializeField]
     private float _intervalDecrease = 0.01f;
-    private float _intervalDecreaseCount;
+    private float _intervalDecreaseCount = 1;
     [Header("フィーバー中の生成のインターバル")]
     [SerializeField]
     private float _createIntervalFever = 1.0f;
