@@ -71,3 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 .vsconfig
+Assets/EditorFolder/Fuda/Title.unity.meta
+Assets/EditorFolder/saktata/150.png.meta
