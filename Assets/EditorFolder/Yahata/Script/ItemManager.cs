@@ -47,12 +47,10 @@ public class ItemManager : MonoBehaviour
         {
             int random = Random.Range(0, 2);
             spriteRenderer.sprite = itemSprite[random];
-            spriteRenderer.sprite = itemSprite[random];
         }
         else if (itemKind == ItemKind.Tsumami)
         {
             int random = Random.Range(2, 4);
-            spriteRenderer.sprite = itemSprite[random];
             spriteRenderer.sprite = itemSprite[random];
 
         } 
@@ -63,7 +61,6 @@ public class ItemManager : MonoBehaviour
         else if(itemKind == ItemKind.Ring)
         {
             int random = Random.Range(5, 7);
-            spriteRenderer.sprite = itemSprite[random];
             spriteRenderer.sprite = itemSprite[random];
         }
         else if( itemKind == ItemKind.Figure)

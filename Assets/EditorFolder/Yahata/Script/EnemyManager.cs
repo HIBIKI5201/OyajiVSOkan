@@ -99,7 +99,8 @@ public class EnemyManager : MonoBehaviour
         }
         else if(enemyKind == EnemyKind.Fridge)
         {
-            enemyRenderer.sprite = enemySprite[5];
+            int random = Random.Range(5, 7);
+            enemyRenderer.sprite = enemySprite[random];
         }
     }
 
@@ -155,6 +156,7 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.CompareTag("EnemyTurn"))
         {
             goAxis *= -1;
+
             //現状GだけなのでGだけを指定しました。3Dモデルが増えるならbool増やせば同様に使えますね。
             if (enemyKind == EnemyKind.G)
             {
