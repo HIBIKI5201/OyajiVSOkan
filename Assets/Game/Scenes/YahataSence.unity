@@ -821,11 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5943318690775240467, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.21
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5943318690775240467, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.061706144
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5943318690775240467, guid: fa36ec5388554ba4db4d5aa13abe7395, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2302,6 +2302,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6112468554301452801, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 6138953544304434026, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -2313,6 +2317,10 @@ PrefabInstance:
     - target: {fileID: 8295216200332906794, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390703553639940954, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8674266645278605348, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
       propertyPath: m_TagString
@@ -2357,9 +2365,9 @@ MonoBehaviour:
   - {fileID: 1813280984060210931, guid: a158e841e3f3d8a418c2e5de442c1dc6, type: 3}
   _isRandom: 1
   _isAutoCreate: 1
-  _createInterval: 1
-  _createTresureInterval: 0.7
-  _intervalDecrease: 0.01
+  _createInterval: 2
+  _createTresureInterval: 1
+  _intervalDecrease: 0.03
   _createIntervalFever: 0.5
   _createTresureIntervalFever: 4
   _isCreateCountLimit: 0

@@ -118,7 +118,7 @@ public class ObjectCreator : MonoBehaviour
 
         if(GameManager.Feverbool)
         {
-            if (_timeCount >= _createIntervalFever)
+            if (_timeCount >= _createIntervalFever / _intervalDecreaseCount)
             {
                 CreateObject(false);
                 _timeCount = 0.0f;

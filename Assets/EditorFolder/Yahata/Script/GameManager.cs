@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
     //フィーバー
     private IEnumerator FeverTime()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         
-        yield return new WaitForSecondsRealtime(FeverCutInTime);
+        //yield return new WaitForSecondsRealtime(FeverCutInTime);
         
         Time.timeScale = 1;
 

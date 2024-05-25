@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     //ジャンプ・攻撃キーの処理
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 4)
         {
             playerRB.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
         }
