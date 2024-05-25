@@ -14,9 +14,9 @@ public class EnemyManagerTest : MonoBehaviour
     private bool trueAI;
 
     //ïœçXì_
-    private bool enemy3DTurn = false;
     private bool _spiderWebLaunch = false;
     private GameObject _spiderWeb;
+    private Vector3 _aimedPosition;
 
     public EnemyKind enemyKind;
     public enum EnemyKind
@@ -202,8 +202,8 @@ public class EnemyManagerTest : MonoBehaviour
                 {
                     _spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
                     _spiderWeb.SetActive(true);
-                    _spiderWeb.transform.parent = transform.root.transform.gameObject.transform.parent;
-                    _spiderWeb.transform.LookAt(GameObject.Find("Player").GetComponent<Transform>().transform.position);
+                    _spiderWeb.transform.parent = transform.parent.parent;
+                    _aimedPosition = GameObject.Find("Player").GetComponent<Transform>().transform.position;
                 }
                 _spiderWebLaunch = true;
 
@@ -218,7 +218,11 @@ public class EnemyManagerTest : MonoBehaviour
     {
         if (_spiderWebLaunch)
         {
-           _spiderWeb.transform.position += new Vector3(1.0f,0,0);
+           _spiderWeb.transform.position +=  (_aimedPosition - _spiderWeb.transform.position) * 0.01f;
+            if(_spiderWeb.transform.position == _aimedPosition)
+            {
+                _spiderWebLaunch = false;
+            }
         }
     }
 }
