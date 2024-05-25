@@ -243,6 +243,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UIProps_7
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 404
+        width: 1911
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7207291909f76b41b6ab669556470a2
+      internalID: 1673563286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -261,6 +282,7 @@ TextureImporter:
       UIProps_4: 2098668395
       UIProps_5: -2090108687
       UIProps_6: 2130372206
+      UIProps_7: 1673563286
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

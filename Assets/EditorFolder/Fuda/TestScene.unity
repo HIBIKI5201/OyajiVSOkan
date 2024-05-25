@@ -860,6 +860,7 @@ MonoBehaviour:
   _attackTime: 0.3
   getCollider: {fileID: 0}
   _getTime: 0
+  animator: {fileID: 0}
 --- !u!70 &698022755
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1943,6 +1944,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HPbar: {fileID: 656903350}
   Drinkbar: {fileID: 1485156103}
+  OyajiHead: {fileID: 0}
+  OyajiHeadSprite: []
   PLHealth: 100
   PLDrink: 100
   DrinkDecrease: 5
