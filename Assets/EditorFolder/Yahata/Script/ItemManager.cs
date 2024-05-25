@@ -115,7 +115,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void Destroy()
     {
         Destroy(gameObject);
     }
