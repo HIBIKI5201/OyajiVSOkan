@@ -42,7 +42,7 @@ public class TitleScript : MonoBehaviour
             }
 
         }
-        else if (Input.GetKeyDown(KeyCode.KeypadEnter) )
+        else if (Input.GetKeyDown(KeyCode.Return) )
         {
             if(_menuCount == 0)
             {
