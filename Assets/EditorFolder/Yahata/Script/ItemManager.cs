@@ -21,6 +21,12 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private Sprite[] itemSprite;
 
+    [Header("回復アイテムステータス")]
+    [Header("0はつまみの回復 \n 1は酒の回復 \n 2は酒のダメージ \n 3はたこやきの回復 \n")]
+    [SerializeField] private int[] _healAmount;
+    [SerializeField] private int[] _getScore;
+    [SerializeField] private float DestroyTime;
+
     void Start()
     {
         if (Treasure)
@@ -58,6 +64,8 @@ public class ItemManager : MonoBehaviour
         {
             renderer.sprite = itemSprite[4];
         }
+
+        Invoke("Destroy", DestroyTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -68,6 +76,7 @@ public class ItemManager : MonoBehaviour
 
             if (itemKind == ItemKind.Tsumami)
             {
+                GameManager.Health += _healAmount[0];
                 Debug.Log("つまみを取得");
             }
             else if (itemKind == ItemKind.Sake)
@@ -77,11 +86,11 @@ public class ItemManager : MonoBehaviour
                 int index = Random.Range(1, 101);
                 if (index <= 80)
                 {
-                    GameManager.Health += 20;
+                    GameManager.Health += _healAmount[1];
                 }
                 else
                 {
-                    GameManager.Health -= 10;
+                    GameManager.Health -= _healAmount[2];
                 }
 
                 GameManager.Drink += 50;
@@ -89,21 +98,26 @@ public class ItemManager : MonoBehaviour
             else if(itemKind == ItemKind.Takoyaki)
             {
                 Debug.Log("たこやきを取得");
-                GameManager.Health += 5;
+                GameManager.Health += _healAmount[3];
             }
             else if(itemKind == ItemKind.Ring)
             {
                 Debug.Log("指輪を取得");
-                GameManager.Score += 2000;
+                GameManager.Score += _getScore[0];
             }
             else if(itemKind == ItemKind.Figure)
             {
                 Debug.Log("フィギュアを取得");
-                GameManager.Score += 500;
+                GameManager.Score += _getScore[1];
             }
 
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
     }
 
 

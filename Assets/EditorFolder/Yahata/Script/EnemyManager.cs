@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     private int goAxis;
     private bool onGround;
     private bool enemyDead;
-    [SerializeField] private float _enemyMoveSpeed;
+  
     private bool trueAI;
 
     public EnemyKind enemyKind;
@@ -23,8 +23,16 @@ public class EnemyManager : MonoBehaviour
         Smoke,
         Fridge
     }
+    [Header("Œ©‚½–Ú•ÏX")]
     [SerializeField] private SpriteRenderer enemyRenderer;
     [SerializeField] private Sprite[] enemySprite;
+
+    [Header("“G‚ÌƒXƒe[ƒ^ƒX")]
+    private float _enemyMoveSpeed;
+    [SerializeField] private float[] _enemySpeed;
+    [SerializeField] private int[] _hetScore;
+    [SerializeField] private int[] _hitDamage;
+
 
     private float playerAngle;
 
@@ -49,17 +57,17 @@ public class EnemyManager : MonoBehaviour
         if(enemyKind == EnemyKind.Spider)
         {
             enemyRenderer.sprite = enemySprite[0];
-            _enemyMoveSpeed = 1.5f;
+            _enemyMoveSpeed = _enemySpeed[0];
         }
         else if(enemyKind == EnemyKind.G)
         {
             enemyRenderer.sprite = enemySprite[1];
-            _enemyMoveSpeed = 2.25f;
+            _enemyMoveSpeed = _enemySpeed[1];
         }
         else if(enemyKind == EnemyKind.Dog)
         {
             enemyRenderer.sprite = enemySprite[2];
-            _enemyMoveSpeed = 3f;
+            _enemyMoveSpeed = _enemySpeed[2];
         }
         else if (enemyKind == EnemyKind.Paper)
         {
@@ -93,32 +101,32 @@ public class EnemyManager : MonoBehaviour
             if (enemyKind == EnemyKind.Spider)
             {
                 Debug.Log("’wå‚ğ“|‚µ‚½");
-                GameManager.Score += 50;
+                GameManager.Score += _hetScore[0];
             } 
             else if(enemyKind == EnemyKind.G)
             {
                 Debug.Log("ƒSƒLƒuƒŠ‚ğ“|‚µ‚½");
-                GameManager.Score += 100;
+                GameManager.Score += _hetScore[1];
             }
             else if(enemyKind== EnemyKind.Dog)
             {
                 Debug.Log("Œ¢‚ğ“|‚µ‚½");
-                GameManager.Score += 200;
+                GameManager.Score += _hetScore[2];
             }
             else if(enemyKind == EnemyKind.Paper)
             {
                 Debug.Log("ƒeƒBƒbƒVƒ…‚ğ“|‚µ‚½");
-                GameManager.Score += 50;
+                GameManager.Score += _hetScore[3];
             }
             else if(enemyKind == EnemyKind.Smoke)
             {
                 Debug.Log("ƒ^ƒoƒR‚ğ“|‚µ‚½");
-                GameManager.Score += 100;
+                GameManager.Score += _hetScore[4];
             }
             else if(enemyKind == EnemyKind.Fridge)
             {
                 Debug.Log("—â‘ ŒÉ‚ğ“|‚µ‚½");
-                GameManager.Score += 200;
+                GameManager.Score += _hetScore[5];
             }
         }
 
@@ -136,27 +144,27 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemyKind == EnemyKind.Spider)
             {
-                GameManager.Health -= 10;
+                GameManager.Health -= _hitDamage[0];
             }
             else if (enemyKind == EnemyKind.G)
             {
-                GameManager.Health -= 15;
+                GameManager.Health -= _hitDamage[1];
             }
             else if (enemyKind == EnemyKind.Dog)
             {
-                GameManager.Health -= 20;
+                GameManager.Health -= _hitDamage[2];
             }
             else if (enemyKind == EnemyKind.Paper)
             {
-                GameManager.Health -= 10;
+                GameManager.Health -= _hitDamage[3];
             }
             else if (enemyKind == EnemyKind.Smoke)
             {
-                GameManager.Health -= 15;
+                GameManager.Health -= _hitDamage[4];
             }
             else if (enemyKind == EnemyKind.Fridge)
             {
-                GameManager.Health -= 20;
+                GameManager.Health -= _hitDamage[5];
             }
 
             Debug.Log(GameManager.Health);

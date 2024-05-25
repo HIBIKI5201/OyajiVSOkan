@@ -1810,6 +1810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284370656}
   - component: {fileID: 1284370657}
+  - component: {fileID: 1284370658}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1862,6 +1863,19 @@ MonoBehaviour:
   NomalBattleTime: 45
   FeverBattleTime: 10
   FeverCutInTime: 5
+  sceneChanger: {fileID: 0}
+--- !u!114 &1284370658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284370655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00e30934092028459022b2193a74a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1415996609
 GameObject:
   m_ObjectHideFlags: 0
