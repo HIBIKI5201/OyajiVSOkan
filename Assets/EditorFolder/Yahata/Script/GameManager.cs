@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
         Health = PLHealth;
         Drink = 0;
 
+        Feverbool = false;
+
         audioSource.PlayOneShot(audioClip[0]);
     }
 

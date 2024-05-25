@@ -108,7 +108,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c455fc27ec7b09443b0b4fcab982ce04, type: 3}
   - {fileID: 21300000, guid: 4e0b0865392fb0840bab43f53b054b9e, type: 3}
   - {fileID: 21300000, guid: f98f8e5e0b40c9a4e86dc535d1f494db, type: 3}
-  - {fileID: 21300000, guid: 8eb69018b0840ad449bc9c02730c421a, type: 3}
+  - {fileID: 21300000, guid: 8df606c47723dca43b7ffdb98c38a68f, type: 3}
   _healAmount: 05000000140000000a0000000a000000
   _getScore: f4010000d0070000
   DestroyTime: 3

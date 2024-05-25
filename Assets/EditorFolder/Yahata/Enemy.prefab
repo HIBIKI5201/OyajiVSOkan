@@ -170,7 +170,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 369afbd06f5715f4b8d81bc04d3a6b63, type: 3}
   - {fileID: 21300000, guid: f19815283e188854d9e3e9a7043b64a4, type: 3}
   - {fileID: 21300000, guid: 2aaa25cdc1e9c1a4e8ff1c09bb3cbe13, type: 3}
-  - {fileID: 7482667652216324306, guid: d69f3d7f3f79f80449571192e3134e2b, type: 3}
+  - {fileID: 21300000, guid: 45068cdd92fa48f4aa8ded0e167daf1f, type: 3}
   _enemySpeed:
   - 1.5
   - 2.25
