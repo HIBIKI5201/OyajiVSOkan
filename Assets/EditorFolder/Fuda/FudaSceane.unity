@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GokiEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5858282532951493371, guid: e5dead2168a424546bb970143e4c659e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6487184850540515393, guid: e5dead2168a424546bb970143e4c659e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -347,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2375706549167406656, guid: 33a7a07428745bf4bbec0d04848fc2cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3149111426572969210, guid: 33a7a07428745bf4bbec0d04848fc2cc, type: 3}
       propertyPath: m_LocalPosition.x
