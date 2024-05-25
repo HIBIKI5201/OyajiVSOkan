@@ -108,6 +108,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4e0b0865392fb0840bab43f53b054b9e, type: 3}
   - {fileID: 21300000, guid: f98f8e5e0b40c9a4e86dc535d1f494db, type: 3}
   - {fileID: 21300000, guid: 8eb69018b0840ad449bc9c02730c421a, type: 3}
+  _healAmount: 05000000140000000a0000000a000000
+  _getScore: 0000000000000000
+  DestroyTime: 0
 --- !u!70 &3239866036215410319
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

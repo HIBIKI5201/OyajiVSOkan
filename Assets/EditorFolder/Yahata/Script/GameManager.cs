@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
     public static bool Feverbool;
 
     public static int[] getItems;
+
+    [Header("シーン切り替え")]
+    [SerializeField] private SceneChanger sceneChanger;
 
     //インゲーム開始時の初期設定
     void Start()
@@ -83,7 +87,7 @@ public class GameManager : MonoBehaviour
         if (Health <= 0)
         {
             Debug.Log("GameOver");
-            Time.timeScale = 0 ;
+            sceneChanger.SwitchScene("Result");
         }
         
         if(Drink > 0)
