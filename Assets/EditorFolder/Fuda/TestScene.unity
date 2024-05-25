@@ -972,6 +972,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &822011498 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+  m_PrefabInstance: {fileID: 7236372703455757269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &908064110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,13 +1981,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _createObjects:
-  - {fileID: 244512311171158299, guid: a8b1d419d3b643c4285eeae9ea055bdd, type: 3}
+  - {fileID: 244512311171158299, guid: 1a0a116019cb8f942acd854d069a4ec5, type: 3}
   - {fileID: 2553917131285715655, guid: a158e841e3f3d8a418c2e5de442c1dc6, type: 3}
   _isRandom: 1
   _isAutoCreate: 1
-  _createInterval: 2
-  _createTresureInterval: 0.5
-  _intervalDecrease: 0.01
+  _createInterval: 1
+  _createTresureInterval: 2
+  _intervalDecrease: 0.1
   _createIntervalFever: 0.5
   _createTresureIntervalFever: 0.25
   _isCreateCountLimit: 0
@@ -1990,7 +1995,7 @@ MonoBehaviour:
   _createPositionType: 0
   _createRange: {x: 5, y: 0, z: 0}
   _createPositions: []
-  _parentObject: {fileID: 0}
+  _parentObject: {fileID: 822011498}
   SpawnAngle: 45
   _spawnSpeed: 3
 --- !u!4 &1415996611
@@ -2291,6 +2296,67 @@ Transform:
   - {fileID: 1129386617}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7236372703455757269
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 794872884362789107, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837905807085952738, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_Name
+      value: Dropper
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295216200332906794, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bef83f8c7a93ca7409f6f85ecf94b40d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2304,3 +2370,4 @@ SceneRoots:
   - {fileID: 2121856046}
   - {fileID: 1492701955}
   - {fileID: 334248611}
+  - {fileID: 7236372703455757269}
