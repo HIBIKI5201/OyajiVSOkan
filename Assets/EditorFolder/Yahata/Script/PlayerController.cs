@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     [Header("アニメーター")]
     [SerializeField] Animator animator;
 
+    [Header("オーディオ")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClips;
+
+
     Vector2 firstScale;
 
     void Start()
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("敵にぶつかった");
+
         }
 
         if (collision.gameObject.CompareTag("Item"))
@@ -45,6 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         attackCollider.enabled = true;
         animator.SetBool("attack", true);
+        audioSource.PlayOneShot(audioClips);
 
         yield return new WaitForSeconds(_attackTime);
 
@@ -92,13 +99,13 @@ public class PlayerController : MonoBehaviour
             playerRB.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
         }
 
-        if(Input.GetKeyDown(KeyCode.RightShift))
+        if(Input.GetKeyDown(KeyCode.Return))
         {
             StartCoroutine(Attack());
         }
 
         // Getモーションを追加
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.RightShift))
         {
             StartCoroutine(Get());
         }

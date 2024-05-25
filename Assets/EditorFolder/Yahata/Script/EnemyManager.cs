@@ -138,33 +138,33 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             if (enemyKind == EnemyKind.Spider)
             {
-                GameManager.Health -= _hitDamage[0];
+                GameManager.Health -= _hitDamage[0] * Time.deltaTime;
             }
             else if (enemyKind == EnemyKind.G)
             {
-                GameManager.Health -= _hitDamage[1];
+                GameManager.Health -= _hitDamage[1] * Time.deltaTime;
             }
             else if (enemyKind == EnemyKind.Dog)
             {
-                GameManager.Health -= _hitDamage[2];
+                GameManager.Health -= _hitDamage[2] * Time.deltaTime;
             }
             else if (enemyKind == EnemyKind.Paper)
             {
-                GameManager.Health -= _hitDamage[3];
+                GameManager.Health -= _hitDamage[3] * Time.deltaTime;
             }
             else if (enemyKind == EnemyKind.Smoke)
             {
-                GameManager.Health -= _hitDamage[4];
+                GameManager.Health -= _hitDamage[4] * Time.deltaTime;
             }
             else if (enemyKind == EnemyKind.Fridge)
             {
-                GameManager.Health -= _hitDamage[5];
+                GameManager.Health -= _hitDamage[5] * Time.deltaTime;
             }
 
             Debug.Log(GameManager.Health);
