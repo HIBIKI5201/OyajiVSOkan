@@ -1090,7 +1090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4998b30d26e800a47844414835e9e790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mytransform: {fileID: 0}
 --- !u!1 &1926894362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +1237,7 @@ GameObject:
   - component: {fileID: 1993961845}
   - component: {fileID: 1993961847}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1374,7 +1373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4998b30d26e800a47844414835e9e790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mytransform: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
