@@ -68,9 +68,10 @@ public class GameManager : MonoBehaviour
     //フィーバー
     private IEnumerator FeverTime()
     {
-        //
         if (!drunkEnd)
         {
+            //フィーバー演出が完成するまで時間停止を一時削除中
+
             //Time.timeScale = 0;
 
             //yield return new WaitForSecondsRealtime(FeverCutInTime);
@@ -106,6 +107,7 @@ public class GameManager : MonoBehaviour
         {
             Feverbool = true;
             Debug.Log("FeverTime");
+
             StartCoroutine(FeverTime());
         }
 
@@ -135,7 +137,6 @@ public class GameManager : MonoBehaviour
         {
             DrunkdPlayerRoll();
         }
-        //ここまで
 
         if (Drink > 0)
         {
@@ -165,24 +166,34 @@ public class GameManager : MonoBehaviour
 
         OyajiHead.sprite = OyajiHeadSprite[OyajiHeadNumber];
     }
+
     //酒での死亡演出
     private IEnumerator DrunkEnd()
     {
         Player.GetComponent<PlayerController>().enabled = false;
         Player.GetComponent<CapsuleCollider2D>().enabled = false;
+
         animator.SetBool("drunkn", true);
+
         Player.transform.position += new Vector3(0, 4.0f, 0);
         Player.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip[2]);
+
         yield return new WaitForSeconds(1.0f);
+
         drunknRoll = true;
+
         audioSource.Stop();
         audioSource.PlayOneShot(audioClip[3]);
+
         yield return new WaitForSeconds(8.0f);
+
         Debug.Log("GameOver");
         sceneChanger.SwitchScene("Result");
     }
+
     private void DrunkdPlayerRoll()
     {
         Player.transform.GetChild(7).rotation *= new Quaternion(0, 0, 0.02f, 0.98f);

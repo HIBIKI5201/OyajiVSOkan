@@ -22,7 +22,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private Sprite[] itemSprite;
 
     [Header("回復アイテムステータス")]
-    [Header("0はつまみの回復 \n 1は酒の回復 \n 2は酒のダメージ \n 3はたこやきの回復 \n")]
+    [Header(" 0はつまみの回復 \n 1は酒の回復 \n 2は酒のダメージ \n 3はたこやきの回復 \n")]
     [SerializeField] private int[] _healAmount;
     [SerializeField] private int[] _getScore;
     [SerializeField] private float DestroyTime;

@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     float defJumpPower;
 
     int strugled=0;
-    //ここまで
 
     Vector2 firstScale;
 
@@ -45,17 +44,19 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("敵にぶつかった");
-
         }
     }
+
     //クモの巣による妨害
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Trap"))
         {
             Debug.Log("クモの巣にひっかかった");
+
             _moveSpeed = defMoveSpeed*0.3f;
             _jumpPower = defJumpPower*0.3f;
+
             if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W))
             {
                 if (strugled>6)
@@ -63,27 +64,31 @@ public class PlayerController : MonoBehaviour
                     Destroy(collider.gameObject);
                     strugled = 0;
                 }
+
                 Debug.Log(strugled);
                 strugled++;
             }
         }
     }
+
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Trap"))
         {
             Debug.Log("クモの巣からぬけた");
+
             _moveSpeed = defMoveSpeed;
             _jumpPower = defJumpPower;
         }
     }
-    //ここまで
 
     //攻撃キーを押された時の処理
     private IEnumerator Attack()
     {
         attackCollider.enabled = true;
+
         animator.SetBool("attack", true);
+
         audioSource.PlayOneShot(audioClips);
 
         yield return new WaitForSeconds(_attackTime);
@@ -99,7 +104,9 @@ public class PlayerController : MonoBehaviour
     {
         //Getモーション追加
         getCollider.enabled = true;
+
         animator.SetBool("get", true);
+
         yield return new WaitForSeconds(_getTime);
 
         getCollider.enabled = false;
@@ -110,7 +117,6 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("get", false);
     }
-
 
     private void FixedUpdate()
     {

@@ -30,17 +30,18 @@ public class EnemyManager : MonoBehaviour
     [Header("敵のステータス")]
     private float _enemyMoveSpeed;
     [SerializeField] private float[] _enemySpeed;
+    [Space]
     [SerializeField] private int[] _hetScore;
     [SerializeField] private int[] _hitDamage;
+    [Space]
+    [SerializeField] private float _webReminTime = 10.0f;
 
-    //追加変数
     private bool spiderWebLaunch = false;
     private GameObject spiderWeb;
+
     private Vector3 aimedPosition;
     private float webReminTimer;
-    [SerializeField] private float _webReminTime = 10.0f;
     private float _DestroyTimer;
-    //ここまで
 
     private float playerAngle;
 
@@ -48,7 +49,7 @@ public class EnemyManager : MonoBehaviour
     {
         //エネミーにはDestroyしてもらいたかったけど時間まではスクリプトに生きててもらいたかった。
         _DestroyTimer = _webReminTime;
-        //ここまで
+
         goAxis = 1;
         onGround = true;
 
@@ -69,24 +70,24 @@ public class EnemyManager : MonoBehaviour
         {
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
+
             GameObject spider3D = Instantiate(transform.parent.gameObject.transform.Find("SpiderEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
             spider3D.SetActive(true);
             spider3D.transform.parent = transform;
 
-            // enemyRenderer.sprite = enemySprite[0];
-            //変更点↑
             _enemyMoveSpeed = _enemySpeed[0];
         }
         else if(enemyKind == EnemyKind.G)
         {
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
+
             GameObject goki3D = Instantiate(transform.parent.gameObject.transform.Find("GokiEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
             goki3D.SetActive(true);
             goki3D.transform.parent = transform;
+
             gameObject.GetComponent<CircleCollider2D>().radius = 0.3f;
-            // enemyRenderer.sprite = enemySprite[1];
-            //変更点↑
+
             _enemyMoveSpeed = _enemySpeed[1];
         }
         else if(enemyKind == EnemyKind.Dog)
@@ -154,10 +155,9 @@ public class EnemyManager : MonoBehaviour
                 Debug.Log("冷蔵庫を倒した");
                 GameManager.Score += _hetScore[5];
             }
+
             //倒した後destroyするコードを追記　※変数増やすの面倒なのでタイマー減らしたことをトリガー代わりにしてます。
             _DestroyTimer -= 0.01f;
-
-            //ここまで
         }
 
         if (collision.gameObject.CompareTag("EnemyTurn"))
@@ -169,7 +169,6 @@ public class EnemyManager : MonoBehaviour
             {
                 transform.rotation = transform.rotation * new Quaternion(0, 1, 0, 0);
             }
-            //ここまで
         }
     }
 
@@ -215,13 +214,16 @@ public class EnemyManager : MonoBehaviour
             {
                 EnemyRB.velocity = Vector2.zero;
                 EnemyRB.gravityScale = 0.05f;
+
                 //クモ止まった後playerめがけて糸を吐く
                 if (!spiderWebLaunch && webReminTimer == 0)
                 {
                     spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
                     spiderWeb.SetActive(true);
                     spiderWeb.transform.parent = transform.parent.parent;
+
                     aimedPosition = GameObject.Find("Player").GetComponent<Transform>().transform.position;
+
                     spiderWebLaunch = true;
                 }
             }
@@ -240,16 +242,17 @@ public class EnemyManager : MonoBehaviour
             Destroy(spiderWeb);
             webReminTimer = 0.0f;
         }
+
         //エネミーを消す処理
         if (_DestroyTimer < _webReminTime)
         {
             _DestroyTimer -= Time.deltaTime;
+
             if (_DestroyTimer <= 0)
             {
                 Destroy(this.gameObject);
             }
         }
-        //ここまで
     }
     //フレームレート下がってもゲームスピードとオブジェクトの動きが一致するようにFixedUpdateで記述しました。
     private void FixedUpdate()
@@ -257,6 +260,7 @@ public class EnemyManager : MonoBehaviour
         if (spiderWebLaunch)
         {
             spiderWeb.transform.position += (aimedPosition - spiderWeb.transform.position) * 0.01f;
+
             if (spiderWeb.transform.position.y <= aimedPosition.y+0.1)
             {
                 webReminTimer += 0.0001f;
@@ -264,5 +268,4 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
-    //ここまで
 }

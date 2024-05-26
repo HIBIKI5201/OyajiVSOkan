@@ -113,7 +113,6 @@ public class ObjectCreator : MonoBehaviour
         _itemTimeCount += Time.deltaTime;
         _intervalDecreaseCount += _intervalDecrease * Time.deltaTime;
 
-
         // インターバル時間に達したらオブジェクトを生成
 
         if(GameManager.Feverbool)
@@ -167,9 +166,11 @@ public class ObjectCreator : MonoBehaviour
                     Random.Range(-_createRange.y, _createRange.y),
                     Random.Range(-_createRange.z, _createRange.z));
                 break;
+
             case CreatePositionType.RandomTransform:
                 // Transformで指定した座標にランダムにオブジェクトを生成
                 int index = Random.Range(0, _createPositions.Length);
+
                 createPos = new Vector3(
                     _createPositions[index].position.x,
                     _createPositions[index].position.y,
