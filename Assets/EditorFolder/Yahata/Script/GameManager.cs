@@ -20,10 +20,14 @@ public class GameManager : MonoBehaviour
     private int OyajiHeadNumber;
 
 
-[Header("プレイヤーステータスとワールド設定")]
+    [Header("プレイヤーステータスとワールド設定")]
     [SerializeField] private float PLHealth;
     [SerializeField] private float PLDrink;
     [SerializeField] private float DrinkDecrease;
+
+    [Header("プレイヤー")]
+    [SerializeField] private GameObject Player;
+    Animator animator;
 
     [Header("UIオブジェクト")]
     [SerializeField] private TextMeshProUGUI TimerText;
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] audioClip;
 
+    private bool drunkEnd =false;
+    private bool drunknRoll = false;
 
     //インゲーム開始時の初期設定
     void Start()
@@ -56,28 +62,36 @@ public class GameManager : MonoBehaviour
         Feverbool = false;
 
         audioSource.PlayOneShot(audioClip[0]);
+        animator = Player.GetComponent<Animator>();
     }
 
     //フィーバー
     private IEnumerator FeverTime()
     {
-        //Time.timeScale = 0;
-        
-        //yield return new WaitForSecondsRealtime(FeverCutInTime);
-        
-        Time.timeScale = 1;
+        //
+        if (!drunkEnd)
+        {
+            //Time.timeScale = 0;
 
-        audioSource.Stop();
-        audioSource.PlayOneShot(audioClip[1]);
+            //yield return new WaitForSecondsRealtime(FeverCutInTime);
 
-        Debug.Log("FeverTimeStart");
-        yield return new WaitForSeconds(FeverBattleTime);
+            Time.timeScale = 1;
 
-        Debug.Log("FeverTimeEnd");
-        Feverbool = false;
+            audioSource.Stop();
+            audioSource.PlayOneShot(audioClip[1]);
 
-        audioSource.Stop();
-        audioSource.PlayOneShot(audioClip[0]);
+            Debug.Log("FeverTimeStart");
+            yield return new WaitForSeconds(FeverBattleTime);
+            if (!drunkEnd)
+            {
+                Debug.Log("FeverTimeEnd");
+                Feverbool = false;
+
+
+                audioSource.Stop();
+                audioSource.PlayOneShot(audioClip[0]);
+            }
+        }
     }
 
     void Update()
@@ -110,8 +124,20 @@ public class GameManager : MonoBehaviour
             Debug.Log("GameOver");
             sceneChanger.SwitchScene("Result");
         }
-        
-        if(Drink > 0)
+
+        //酒での死亡演出
+        if (Drink >= PLDrink&& !drunkEnd)
+        {
+            StartCoroutine(DrunkEnd());
+            drunkEnd=true;
+        }
+        if (drunknRoll)
+        {
+            DrunkdPlayerRoll();
+        }
+        //ここまで
+
+        if (Drink > 0)
         {
             Drink -= DrinkDecrease * Time.deltaTime;
         }
@@ -138,5 +164,28 @@ public class GameManager : MonoBehaviour
         Debug.Log(Health / PLHealth);
 
         OyajiHead.sprite = OyajiHeadSprite[OyajiHeadNumber];
+    }
+    //酒での死亡演出
+    private IEnumerator DrunkEnd()
+    {
+        Player.GetComponent<PlayerController>().enabled = false;
+        Player.GetComponent<CapsuleCollider2D>().enabled = false;
+        animator.SetBool("drunkn", true);
+        Player.transform.position += new Vector3(0, 4.0f, 0);
+        Player.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip[2]);
+        yield return new WaitForSeconds(1.0f);
+        drunknRoll = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioClip[3]);
+        yield return new WaitForSeconds(8.0f);
+        Debug.Log("GameOver");
+        sceneChanger.SwitchScene("Result");
+    }
+    private void DrunkdPlayerRoll()
+    {
+        Player.transform.GetChild(7).rotation *= new Quaternion(0, 0, 0.02f, 0.98f);
+        Player.transform.position += new Vector3(0, -0.008f,0);
     }
 }

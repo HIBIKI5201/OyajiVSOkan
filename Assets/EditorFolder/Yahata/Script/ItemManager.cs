@@ -72,11 +72,11 @@ public class ItemManager : MonoBehaviour
         Invoke("Destroy", DestroyTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.name == "Get")
         {
-            Debug.Log("アイテムがプレイヤーを認識");
+            Debug.Log("プレイヤーアイテムを認識");
 
             if (itemKind == ItemKind.Tsumami)
             {

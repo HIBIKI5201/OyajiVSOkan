@@ -34,15 +34,21 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int[] _hitDamage;
 
     //追加変数
-    private bool _spiderWebLaunch = false;
-    private GameObject _spiderWeb;
-    private Vector3 _aimedPosition;
+    private bool spiderWebLaunch = false;
+    private GameObject spiderWeb;
+    private Vector3 aimedPosition;
+    private float webReminTimer;
+    [SerializeField] private float _webReminTime = 10.0f;
+    private float _DestroyTimer;
     //ここまで
 
     private float playerAngle;
 
     void Start()
     {
+        //エネミーにはDestroyしてもらいたかったけど時間まではスクリプトに生きててもらいたかった。
+        _DestroyTimer = _webReminTime;
+        //ここまで
         goAxis = 1;
         onGround = true;
 
@@ -63,9 +69,9 @@ public class EnemyManager : MonoBehaviour
         {
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
-            GameObject _spider = Instantiate(transform.parent.gameObject.transform.Find("SpiderEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
-            _spider.SetActive(true);
-            _spider.transform.parent = transform;
+            GameObject spider3D = Instantiate(transform.parent.gameObject.transform.Find("SpiderEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
+            spider3D.SetActive(true);
+            spider3D.transform.parent = transform;
 
             // enemyRenderer.sprite = enemySprite[0];
             //変更点↑
@@ -75,10 +81,9 @@ public class EnemyManager : MonoBehaviour
         {
             //変更点↓
             Destroy(GetComponent<SpriteRenderer>());
-            GameObject _goki = Instantiate(transform.parent.gameObject.transform.Find("GokiEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
-            _goki.SetActive(true);
-            _goki.transform.parent = transform;
-            //コダイダー
+            GameObject goki3D = Instantiate(transform.parent.gameObject.transform.Find("GokiEnemy").gameObject, transform.position, Quaternion.identity) as GameObject;
+            goki3D.SetActive(true);
+            goki3D.transform.parent = transform;
             gameObject.GetComponent<CircleCollider2D>().radius = 0.3f;
             // enemyRenderer.sprite = enemySprite[1];
             //変更点↑
@@ -149,11 +154,13 @@ public class EnemyManager : MonoBehaviour
                 Debug.Log("冷蔵庫を倒した");
                 GameManager.Score += _hetScore[5];
             }
+            //倒した後destroyするコードを追記　※変数増やすの面倒なのでタイマー減らしたことをトリガー代わりにしてます。
+            _DestroyTimer -= 0.01f;
+
+            //ここまで
         }
 
- 
-
-        if(collision.gameObject.CompareTag("EnemyTurn"))
+        if (collision.gameObject.CompareTag("EnemyTurn"))
         {
             goAxis *= -1;
 
@@ -195,7 +202,7 @@ public class EnemyManager : MonoBehaviour
                 GameManager.Health -= _hitDamage[5] * Time.deltaTime;
             }
 
-            Debug.Log(GameManager.Health);
+           Debug.Log(GameManager.Health);
         }
     }
 
@@ -209,32 +216,51 @@ public class EnemyManager : MonoBehaviour
                 EnemyRB.velocity = Vector2.zero;
                 EnemyRB.gravityScale = 0.05f;
                 //クモ止まった後playerめがけて糸を吐く
-                if (!_spiderWebLaunch)
+                if (!spiderWebLaunch && webReminTimer == 0)
                 {
-                    _spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
-                    _spiderWeb.SetActive(true);
-                    _spiderWeb.transform.parent = transform.parent.parent;
-                    _aimedPosition = GameObject.Find("Player").GetComponent<Transform>().transform.position;
+                    spiderWeb = Instantiate(transform.parent.gameObject.transform.Find("SpiderWeb").gameObject, transform.position, Quaternion.identity);
+                    spiderWeb.SetActive(true);
+                    spiderWeb.transform.parent = transform.parent.parent;
+                    aimedPosition = GameObject.Find("Player").GetComponent<Transform>().transform.position;
+                    spiderWebLaunch = true;
                 }
-                _spiderWebLaunch = true;
-
             }
             else
             {
                 EnemyRB.velocity = new Vector2(_enemyMoveSpeed * goAxis, EnemyRB.velocity.y);
             }
-            //ここまで
         }
+        //クモの巣が消える処理
+        if (webReminTimer > 0 && webReminTimer <= _webReminTime)
+        { 
+            webReminTimer += Time.deltaTime;
+        }
+        if (webReminTimer >= _webReminTime)
+        {
+            Destroy(spiderWeb);
+            webReminTimer = 0.0f;
+        }
+        //エネミーを消す処理
+        if (_DestroyTimer < _webReminTime)
+        {
+            _DestroyTimer -= Time.deltaTime;
+            if (_DestroyTimer <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        //ここまで
     }
     //フレームレート下がってもゲームスピードとオブジェクトの動きが一致するようにFixedUpdateで記述しました。
     private void FixedUpdate()
     {
-        if (_spiderWebLaunch)
+        if (spiderWebLaunch)
         {
-            _spiderWeb.transform.position += (_aimedPosition - _spiderWeb.transform.position) * 0.01f;
-            if (_spiderWeb.transform.position == _aimedPosition)
+            spiderWeb.transform.position += (aimedPosition - spiderWeb.transform.position) * 0.01f;
+            if (spiderWeb.transform.position.y <= aimedPosition.y+0.1)
             {
-                _spiderWebLaunch = false;
+                webReminTimer += 0.0001f;
+                spiderWebLaunch = false;
             }
         }
     }

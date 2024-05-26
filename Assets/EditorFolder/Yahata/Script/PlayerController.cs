@@ -23,11 +23,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClips;
 
+    //初期値の保存
+    float defMoveSpeed;
+    float defJumpPower;
+
+    int strugled=0;
+    //ここまで
 
     Vector2 firstScale;
 
     void Start()
     {
+        defJumpPower = _jumpPower;
+        defMoveSpeed = _moveSpeed;
         firstScale = transform.localScale;
     }
 
@@ -39,12 +47,37 @@ public class PlayerController : MonoBehaviour
             Debug.Log("敵にぶつかった");
 
         }
-
-        if (collision.gameObject.CompareTag("Item"))
+    }
+    //クモの巣による妨害
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Trap"))
         {
-            Debug.Log("アイテムを取得");
+            Debug.Log("クモの巣にひっかかった");
+            _moveSpeed = defMoveSpeed*0.3f;
+            _jumpPower = defJumpPower*0.3f;
+            if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W))
+            {
+                if (strugled>6)
+                {
+                    Destroy(collider.gameObject);
+                    strugled = 0;
+                }
+                Debug.Log(strugled);
+                strugled++;
+            }
         }
     }
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Trap"))
+        {
+            Debug.Log("クモの巣からぬけた");
+            _moveSpeed = defMoveSpeed;
+            _jumpPower = defJumpPower;
+        }
+    }
+    //ここまで
 
     //攻撃キーを押された時の処理
     private IEnumerator Attack()
@@ -66,12 +99,16 @@ public class PlayerController : MonoBehaviour
     {
         //Getモーション追加
         getCollider.enabled = true;
-
+        animator.SetBool("get", true);
         yield return new WaitForSeconds(_getTime);
 
         getCollider.enabled = false;
 
         Debug.Log("あいてむ");
+
+        yield return new WaitForSeconds(0.2f);
+
+        animator.SetBool("get", false);
     }
 
 
